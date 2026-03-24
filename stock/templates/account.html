@@ -3,15 +3,25 @@
     <div>
         <h4>Денежные средства</h4>
         {% for acc_currency in currencies %}
-            <div>{{ acc_currency.amount }}{{ acc_currency.sign }}</div>
+            <div>{{ acc_currency.amount }} {{ acc_currency.sign }}</div>
+        {% empty %}
+            <div>Нет денежных средств</div>
         {% endfor %}
     </div>
+
     <div>
         <h4>Акции</h4>
         {% for acc_stock in stocks %}
-            <div>{{ acc_stock.ticker }} - {{ acc_stock.amount }} - {{ acc_stock.avg }}</div>
+            <div>
+                Тикер: {{ acc_stock.ticker }} |
+                Количество: {{ acc_stock.amount }} |
+                Средняя цена покупки: {{ acc_stock.avg }}
+            </div>
+        {% empty %}
+            <div>Акции отсутствуют</div>
         {% endfor %}
     </div>
+
     <div>
         <a href="{% url 'stock:list' %}">К списку акций</a>
     </div>
